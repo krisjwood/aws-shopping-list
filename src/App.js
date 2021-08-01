@@ -1,11 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { getItems } from './apiClient'
 
 function App() {
   const [input, setInput] = useState('')
-  const [list, setList] = useState([
-    { id: 1, timeStamp: 1, name: 'item 1', complete: false },
-    { id: 2, timeStamp: 2, name: 'item 2', complete: true }
-  ])
+  const [list, setList] = useState([])
+
+  // { id: 1, timeStamp: 1, name: 'item 1', complete: false },
+  //   { id: 2, timeStamp: 2, name: 'item 2', complete: true }
+
+  useEffect(() => {
+    getItems()
+      .then((list) => {
+        setList(list)
+        return null
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
 
   function handleSubmit (e) {
     e.preventDefault()
@@ -50,7 +63,7 @@ function App() {
       <button>Add</button>
     </form>
     <ul>
-        {list.map(item =>
+        {list && list.map(item =>
           <li key={item.timeStamp} className={item.complete ? 'completed' : ''}>
             <input className="toggle" type="checkbox" checked={item.complete} onChange={() => toggleComplete(item.timeStamp)} value={item.timeStamp} />
             {item.name} <button onClick={() => clickDelete(item.timeStamp)} >Delete</button></li>
