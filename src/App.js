@@ -38,6 +38,7 @@ function App() {
 
   return (
     <>
+    <img id="cart-image" alt="shopping cart" src="./images/cart.jpg"/>
     <h1>Kris&#39; Shopping List</h1>
     <form onSubmit={handleSubmit}>
       <input
@@ -55,7 +56,7 @@ function App() {
             {item.name} <button onClick={() => clickDelete(item.timeStamp)} >Delete</button></li>
         )}
       </ul>
-      <p>&copy;2021 Kris Wood</p>
+      <p id="footer">&copy; 2021 <a href="https://github.com/krisjwood/aws-shopping-list">Kris Wood</a></p>
     </>
   )
 }
