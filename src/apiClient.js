@@ -1,32 +1,34 @@
 import request from 'superagent'
 
+const InvokeApi = 'https://yegzs62qu6.execute-api.ap-southeast-2.amazonaws.com/prod'
+
 // Get all items in list
 export function getItems () {
   return request
-    .get('https://yegzs62qu6.execute-api.ap-southeast-2.amazonaws.com/prod')
+    .get(InvokeApi)
     .then(res => res.body)
 }
 
 // Add item to list
 export function postItem (item) {
   return request
-    .post('')
+    .post(InvokeApi)
     .send(item)
-    .then(res => console.log(`Successfully added: ${res.body}`))
-}
+    .then(() => console.log('Successfully added'))
+  }
 
 // Delete list item
 export function deleteItem (id) {
   return request
-  .delete('')
-  .send(id)
-  .then(res => console.log(`Successfully deleted: ${res.body}`))
+    .delete(InvokeApi)
+    .send(id)
+    .then(res => console.log(`Successfully deleted ${res.body} item`))
 }
 
 // Update item complete function
-export function patchItem (id) {
+export function patchItem (item) {
   return request
-    .patch('')
-    .send(id)
+    .patch(InvokeApi)
+    .send(item)
     .then(res => console.log(`Successfully updated: ${res.body}`))
 }

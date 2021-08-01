@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getItems } from './apiClient'
+import { getItems, postItem, deleteItem, patchItem } from './apiClient'
 
 function App() {
   const [input, setInput] = useState('')
@@ -14,21 +14,12 @@ function App() {
       .catch((err) => {
         console.log(err)
       })
-  }, [])
+  }, [list])
 
 
   function handleSubmit (e) {
     e.preventDefault()
-    const newList = [
-      ...list,
-      {
-        timeStamp: Date.now(),
-        name: input,
-        complete: false
-      }
-    ]
-    setList(newList)
-    // POST name
+    postItem(input)
     setInput('')
   }
 
@@ -40,25 +31,43 @@ function App() {
 
   function clickDelete(id) {
     console.log(id)
-    
+    deleteItem(id)
+      .then(() => {
+        return null
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
   }
 
-  function toggleComplete(id) {
-    console.log(id)
+  function toggleComplete(id, complete) {
+    console.log('before: ', id, complete)
     console.log(list)
-    const newArray = []
-    list.map(item => {
-      if (item.id === id) {
-        newArray.push({
-          id: item.id,
-          name: item.name,
-          complete: !item.complete
-        })
-      } else {
-        newArray.push(item)
-      }
-    })
-    setList(newArray)
+
+    complete = !complete
+
+    console.log('after: ', complete)
+
+    const item = {
+      id,
+      complete
+    }
+
+    patchItem(item)
+    // const newArray = []
+    // list.map((item) => {
+    //   if (item.id === id) {
+    //     newArray.push({
+    //       id: item.id,
+    //       name: item.name,
+    //       complete: !item.complete
+    //     })
+    //   } else {
+    //     newArray.push(item)
+    //   }
+    // })
+    // setList(newArray)
     // PATCH update to db  
   }
 
@@ -77,9 +86,9 @@ function App() {
     </form>
     <ul>
         {list && list.map(item =>
-          <li key={item.timeStamp} className={item.complete ? 'completed' : ''}>
-            <input className="toggle" type="checkbox" checked={item.complete} onChange={() => toggleComplete(item.timeStamp)} value={item.timeStamp} />
-            {item.name} <button onClick={() => clickDelete(item.timeStamp)} >Delete</button></li>
+          <li key={item.id} className={item.complete ? 'completed' : ''}>
+            <input className="toggle" type="checkbox" checked={item.complete} onChange={() => toggleComplete(item.id, item.complete)} value={item.id} />
+            {item.name} <button onClick={() => clickDelete(item.id)} >Delete</button></li>
         )}
       </ul>
       <p id="footer">&copy; 2021 <a href="https://github.com/krisjwood/aws-shopping-list">Kris Wood</a></p>
