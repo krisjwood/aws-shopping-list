@@ -45,33 +45,19 @@ function App() {
   }
 
   function toggleComplete(id, complete) {
-    console.log('before: ', id, complete)
-    console.log(list)
-
-    complete = !complete
-
-    console.log('after: ', complete)
-
     const item = {
       id,
-      complete
+      complete: !complete
     }
 
     patchItem(item)
-    // const newArray = []
-    // list.map((item) => {
-    //   if (item.id === id) {
-    //     newArray.push({
-    //       id: item.id,
-    //       name: item.name,
-    //       complete: !item.complete
-    //     })
-    //   } else {
-    //     newArray.push(item)
-    //   }
-    // })
-    // setList(newArray)
-    // PATCH update to db  
+      .then(() => {
+        getItems()
+          .then((list) => {
+            setList(list)
+          })
+      return null
+    }) 
   }
 
   return (

@@ -30,5 +30,5 @@ export function patchItem (item) {
   return request
     .patch(InvokeApi)
     .send(item)
-    .then(res => console.log(`Successfully updated: ${res.body}`))
+    .then(() => console.log('Successfully updated'))
 }
