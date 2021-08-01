@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { getItems, postItem, deleteItem, patchItem } from './apiClient'
+import { FaTrashAlt } from 'react-icons/fa'
+import { SiAmazonaws } from 'react-icons/si'
+import { BsPlusCircle } from 'react-icons/bs'
+import { VscAdd } from 'react-icons/vsc'
+
+
 
 function App() {
   const [input, setInput] = useState('')
@@ -73,9 +79,10 @@ function App() {
 
   return (
     <>
+    <div className="container">
     <img id="cart-image" alt="shopping cart" src="./images/cart.jpg"/>
     <h1>Kris&#39; Shopping List</h1>
-    <p>{list && list.length} items in list</p>
+    <p>{list && list.length} items in your list</p>
     {/* <p>{list && list.filter(item => item.complete === 1)}</p> */}
     <form onSubmit={handleSubmit}>
       <input
@@ -84,16 +91,18 @@ function App() {
         onChange={handleChange}
         value={input}
       />
-      <button>Add</button>
+      <button><BsPlusCircle /></button>
     </form>
     <ul>
         {list && list.map(item =>
           <li key={item.id} className={item.complete ? 'completed' : ''}>
             <input className="toggle" type="checkbox" checked={item.complete} onChange={() => toggleComplete(item.id, item.complete)} value={item.id} />
-            {item.name} <button onClick={() => handleDelete(item.id)} >Delete</button></li>
+            {item.name}  <button className="trash"><FaTrashAlt onClick={() => handleDelete(item.id)} /></button></li>
         )}
       </ul>
-      <p id="footer">&copy; 2021 <a href="https://github.com/krisjwood/aws-shopping-list">Kris Wood</a></p>
+      </div>
+      <p id="footer">&copy; 2021 <a href="https://github.com/krisjwood/aws-shopping-list">Kris Wood</a>.</p>
+      <span><p id="aws">Deployed with </p><SiAmazonaws/></span>
     </>
   )
 }

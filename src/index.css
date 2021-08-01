@@ -10,6 +10,7 @@ ul li {
   list-style-type: none;
   /* text-align: left; */
   margin-left: -40px;
+  position: relative;
 }
 
 li.completed {
@@ -30,4 +31,15 @@ h1 {
 
 button {
   margin: 5px;
+  padding: 5px;
+  /* background-color: #FE802C; */
 }
+
+button:hover {
+  background-color: #FE802C;
+}
+
+#aws {
+  font-size: small; 
+}
+
