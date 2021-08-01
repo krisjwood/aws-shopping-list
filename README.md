@@ -10,7 +10,7 @@ A simple shopping list app built with the following tech:
 * Database is **AWS RDS - mySQL**
 
 ### Why these technologies?
-Mainly because this was the brief :speak_no_evil:. I used React because I am familar with the framework. I knew deploying to AWS would be the challenge so wanted to focus most my time on the backend deployment. I used a relational database as it's a simple application with small data storage demands so didn't feel it needed to be over-engineered.
+Mainly because this was the brief :speak_no_evil:. I used React because I am most comfortable with it out of all the JS UI libraries. I knew deploying to AWS would be the challenge so wanted to focus most of my time on the backend deployment. I used a relational database because it's a simple application with little data storage demands so I didn't feel it needed to be over-engineered.
 
 ### MVP & Stretch
 I feel I have met the MVP of the brief however if given more time I would look at the following:
@@ -20,12 +20,14 @@ I feel I have met the MVP of the brief however if given more time I would look a
     * allow user to edit item text
     * export list to csv, print to PDF
     * create multiple lists
-    * create an account - authentication using Auth0
-* Improved CSS and styling
+    * user session - authentication using Auth0
+* Improve CSS and styling
 * Unit and integration testing
 
 ## How to install and deploy
-Follow the instructions below to run the app locally on your computer. Alternatively, save yourself the trouble and check out the deployed version on AWS - http://shopping-list-react-app.s3-website-ap-southeast-2.amazonaws.com/ :metal:
+Follow the instructions below to run the app locally on your computer. 
+
+Alternatively, save yourself the trouble and check out the [deployed version on AWS](http://shopping-list-react-app.s3-website-ap-southeast-2.amazonaws.com/) :metal:
 ### In your CLI
 
 1. Clone the repo to your computer 

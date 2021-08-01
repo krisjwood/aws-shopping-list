@@ -14,14 +14,16 @@ export async function postItem (item) {
   await request
     .post(InvokeApi)
     .send({item})
+  return console.log(`Item added`)
+
   }
 
 // Delete list item
 export async function deleteItem (id) {
-  const res = await request
+  await request
     .delete(InvokeApi)
     .send(id)
-  return console.log(`Successfully deleted ${res.body} item`)
+  return console.log(`Item deleted`)
 }
 
 // Update item complete function
@@ -29,5 +31,5 @@ export async function patchItem (item) {
   await request
     .patch(InvokeApi)
     .send(item)
-  return console.log('Successfully updated')
+  return console.log('Item updated')
 }

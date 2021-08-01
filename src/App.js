@@ -4,8 +4,6 @@ import { FaTrashAlt } from 'react-icons/fa'
 import { SiAmazonaws } from 'react-icons/si'
 import { BsPlusCircle } from 'react-icons/bs'
 
-
-
 function App() {
   const [input, setInput] = useState('')
   const [list, setList] = useState([])
@@ -81,7 +79,6 @@ function App() {
     <div className="container">
     <img id="cart-image" alt="shopping cart" src="./images/cart.jpg"/>
     <h1>Kris&#39; Shopping List</h1>
-    {/* <p> items in your list</p> */}
     <p>{list.filter(item => item.complete === 0).length}/{list && list.length} items remaining</p>
     <form onSubmit={handleSubmit}>
       <input
@@ -106,4 +103,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
