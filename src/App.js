@@ -5,9 +5,6 @@ function App() {
   const [input, setInput] = useState('')
   const [list, setList] = useState([])
 
-  // { id: 1, timeStamp: 1, name: 'item 1', complete: false },
-  //   { id: 2, timeStamp: 2, name: 'item 2', complete: true }
-
   useEffect(() => {
     getItems()
       .then((list) => {
@@ -43,10 +40,26 @@ function App() {
 
   function clickDelete(id) {
     console.log(id)
+    
   }
 
   function toggleComplete(id) {
     console.log(id)
+    console.log(list)
+    const newArray = []
+    list.map(item => {
+      if (item.id === id) {
+        newArray.push({
+          id: item.id,
+          name: item.name,
+          complete: !item.complete
+        })
+      } else {
+        newArray.push(item)
+      }
+    })
+    setList(newArray)
+    // PATCH update to db  
   }
 
   return (

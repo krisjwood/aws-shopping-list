@@ -6,13 +6,10 @@ body {
     text-align: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 ul li {
   list-style-type: none;
+  text-align: left;
+  margin-left: -40px;
 }
 
 li.completed {
@@ -29,4 +26,8 @@ li.completed {
 
 h1 {
   color: #FE802C;
+}
+
+button {
+  margin: 5px;
 }
