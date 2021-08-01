@@ -8,11 +8,11 @@ function App() {
   useEffect(() => {
     getItems()
       .then((list) => {
-        setList(list)
+        setList(list.reverse())
         return null
       })
-      .catch((err) => {
-        console.log(err)
+      .catch(() => {
+        console.log('Unable to get list of items')
       })
   }, [])
 
@@ -20,7 +20,16 @@ function App() {
   function handleSubmit (e) {
     e.preventDefault()
     postItem(input)
-    setInput('')
+    .then(() => {
+      getItems()
+      .then((list) => {
+        setList(list.reverse())
+      })
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+      setInput('')
   }
 
 
@@ -29,17 +38,17 @@ function App() {
     setInput(newItem)
   }
 
-  function clickDelete(id) {
+  function handleDelete(id) {
     deleteItem(id)
       .then(() => {
         getItems()
           .then((list) => {
-            setList(list)
+            setList(list.reverse())
           })
         return null
       })
-      .catch((err) => {
-        console.log(err)
+      .catch(() => {
+        console.log('Unable to delete item')
       })
 
   }
@@ -49,12 +58,14 @@ function App() {
       id,
       complete: !complete
     }
-
     patchItem(item)
       .then(() => {
         getItems()
           .then((list) => {
-            setList(list)
+            setList(list.reverse())
+          })
+          .catch(() => {
+            console.log('Unable to update item')
           })
       return null
     }) 
@@ -64,6 +75,8 @@ function App() {
     <>
     <img id="cart-image" alt="shopping cart" src="./images/cart.jpg"/>
     <h1>Kris&#39; Shopping List</h1>
+    <p>{list && list.length} items in list</p>
+    {/* <p>{list && list.filter(item => item.complete === 1)}</p> */}
     <form onSubmit={handleSubmit}>
       <input
         placeholder="Add item to list"
@@ -77,7 +90,7 @@ function App() {
         {list && list.map(item =>
           <li key={item.id} className={item.complete ? 'completed' : ''}>
             <input className="toggle" type="checkbox" checked={item.complete} onChange={() => toggleComplete(item.id, item.complete)} value={item.id} />
-            {item.name} <button onClick={() => clickDelete(item.id)} >Delete</button></li>
+            {item.name} <button onClick={() => handleDelete(item.id)} >Delete</button></li>
         )}
       </ul>
       <p id="footer">&copy; 2021 <a href="https://github.com/krisjwood/aws-shopping-list">Kris Wood</a></p>
