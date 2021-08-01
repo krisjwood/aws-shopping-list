@@ -14,7 +14,6 @@ export async function postItem (item) {
   await request
     .post(InvokeApi)
     .send({item})
-  // return console.log(`Successfully deleted ${res.body} item`)
   }
 
 // Delete list item

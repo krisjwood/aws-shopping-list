@@ -11,8 +11,8 @@ function App() {
         setList(list.reverse())
         return null
       })
-      .catch(() => {
-        console.log('Unable to get list of items')
+      .catch((err) => {
+        console.log(err)
       })
   }, [])
 
@@ -47,8 +47,8 @@ function App() {
           })
         return null
       })
-      .catch(() => {
-        console.log('Unable to delete item')
+      .catch((err) => {
+        console.log(err)
       })
 
   }
@@ -64,8 +64,8 @@ function App() {
           .then((list) => {
             setList(list.reverse())
           })
-          .catch(() => {
-            console.log('Unable to update item')
+          .catch((err) => {
+            console.log(err)
           })
       return null
     }) 
