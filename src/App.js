@@ -14,7 +14,7 @@ function App() {
       .catch((err) => {
         console.log(err)
       })
-  }, [list])
+  }, [])
 
 
   function handleSubmit (e) {
@@ -30,9 +30,12 @@ function App() {
   }
 
   function clickDelete(id) {
-    console.log(id)
     deleteItem(id)
       .then(() => {
+        getItems()
+          .then((list) => {
+            setList(list)
+          })
         return null
       })
       .catch((err) => {
