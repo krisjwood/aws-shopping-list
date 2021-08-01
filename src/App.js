@@ -3,7 +3,6 @@ import { getItems, postItem, deleteItem, patchItem } from './apiClient'
 import { FaTrashAlt } from 'react-icons/fa'
 import { SiAmazonaws } from 'react-icons/si'
 import { BsPlusCircle } from 'react-icons/bs'
-import { VscAdd } from 'react-icons/vsc'
 
 
 
@@ -77,13 +76,13 @@ function App() {
     }) 
   }
 
-  return (
+   return (
     <>
     <div className="container">
     <img id="cart-image" alt="shopping cart" src="./images/cart.jpg"/>
     <h1>Kris&#39; Shopping List</h1>
-    <p>{list && list.length} items in your list</p>
-    {/* <p>{list && list.filter(item => item.complete === 1)}</p> */}
+    {/* <p> items in your list</p> */}
+    <p>{list.filter(item => item.complete === 0).length}/{list && list.length} items remaining</p>
     <form onSubmit={handleSubmit}>
       <input
         placeholder="Add item to list"
@@ -102,7 +101,7 @@ function App() {
       </ul>
       </div>
       <p id="footer">&copy; 2021 <a href="https://github.com/krisjwood/aws-shopping-list">Kris Wood</a>.</p>
-      <span><p id="aws">Deployed with </p><SiAmazonaws/></span>
+      <SiAmazonaws/>
     </>
   )
 }
