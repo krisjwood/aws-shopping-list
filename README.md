@@ -28,6 +28,8 @@ I feel I have met the MVP of the brief however if given more time I would look a
 Follow the instructions below to run the app locally on your computer. 
 
 Alternatively, save yourself the trouble and check out the [deployed version on AWS](http://shopping-list-react-app.s3-website-ap-southeast-2.amazonaws.com/) :metal:
+Please note: AWS may not work as free tier is exceeded.
+
 ### In your CLI
 
 1. Clone the repo to your computer 
